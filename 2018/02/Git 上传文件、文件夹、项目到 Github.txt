@@ -1,0 +1,41 @@
+Git 上传文件、文件夹、项目到 Github
+一、配置安装git
+	1.绑定用户:
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "529140702@qq.com"
+二、配置SSH
+	1.在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，
+	可直接跳到下一步。如果没有，打开（windows下打开 git bash）,创建SSH Key,密码可以不设置直接回车。
+	$ ssh-keygen -t rsa -C "529140702@qq.com"
+	
+	如果一切顺利的话，可以在用户的目录里找到.ssh目录，里面有id_rsa和id_rsa_pub两个文件，这两个就是SSH Key
+	的秘钥，id_rsa 是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心的告诉任何人。用记事本打开
+	id_rsa.pub(C:Users/Administrator/.ssh)，得到ssh key 公钥。
+	2、为 Github 账户添加 ssh key 。
+	登录 Github，展开个人头像的小三角，点settings，然后打开SSH keys菜单，点击Add SSH key新增密钥，填上标题。
+	
+三、建立仓库
+	填一下仓库名称，Initialize this repository with a README是可选的，建议在创建时选上，可以在后面省一个步骤。
+	填好之后，点Create repository完成仓库的建立
+四、克隆仓库
+	如果是全新的项目没有任何文件，也可以不用克隆仓库，跳过这一步。点开 Git Shell，进入命令行。
+	首先我们先要把 GitHub 上的我们新建的仓库 clone下来。在初始化版本库之前，先要确认认证的公钥是否正确。
+	$ ssh -T git@github.com
+	
+	如果收到成功的确认消息，就可以开始克隆远程仓库了（以我的一个项目为例）
+	$ git clone https://github.com/luckbearbear/record.git
+	
+	远程仓库的地址可以在自己的 Github 项目上找到（以我的为例）
+五、上传项目
+	$ git add .
+	$ git commit -m 'first_commit'
+	$ git remote add origin https://github.com/luickybearbear/record.git
+	
+	如果关联出现错误 fatal: remote origin already exists，则执行下列语句再进行关联
+	git remote rm origin
+	
+	把本地库的所有内容推送到远程库上   $ git push -u origin master
+	
+	如果在推送时出现错误 error:failed to push som refs to.......，则执行下列语句
+	git pull origin master
+	将远程仓库 Github 上的文件拉下来合并之后重新推送上去
