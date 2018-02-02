@@ -1,4 +1,4 @@
-Git 上传文件、文件夹、项目到 Github
+﻿Git 上传文件、文件夹、项目到 Github
 一、配置安装git
 	1.绑定用户:
 	$ git config --global user.name "Your Name"
@@ -43,3 +43,7 @@ Git 上传文件、文件夹、项目到 Github
 	使用git bush时，使用git add XX 添加文件后，git status 发现中文文件名是数字形式，
 	比如"\123\456\789.txt"，点击也无法打开，二使用ls，git log都可以显示中文，网上各种查找资料，
 	最后修改配置git config --global core.quotepath false即可解决！
+七、git push被拒绝
+	因为当前分支的最新提交落后于其对应的远程分支，所以我们先从远程库fetch到更新再和本地库合并，之后就可以git 	push操作了。
+	$git fetch origin  
+	03.$git merge origin/master 
